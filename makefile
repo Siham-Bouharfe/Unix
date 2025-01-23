@@ -1,7 +1,18 @@
-#!/usr/bin/env bash
-touch README.md
-echo "Project Title: Peer-graded Assignment: Bash, Make, Git, and GitHub" > README.md
-echo "Date make ran at:" >> README.md
-date >> README.md
-echo "Number of lines file guessinggame.sh contains:" >> README.md
-cat guessinggame.sh | wc -l >> README.md
+#/usr/bin/env bash
+
+all: README.md
+
+README.md: guessinggame.sh
+	echo "## The Unix Workbench Course Peer-Graded Assignment" > README.md
+	echo "by Johns Hopkins University on [coursera.org](https://www.coursera.org/)." >> README.md
+	echo "\\" >> README.md	
+	echo "*Description: make a program called *guessinggame.sh. This program should continuously ask the user to guess the number of files in the current directory, until they guess the correct number. The user is informed if their guess is too high or too low. Once the user guesses the correct number of files in the current directory they should be congratulated." >> README.md
+	echo "\\" >> README.md
+	echo -n "*Make date*: " >> README.md
+	date >> README.md
+	echo "\\" >> README.md
+	echo -n "*Number of lines in guessinggame.sh:* " >> README.md
+	wc -l guessinggame.sh | egrep -o "[0-9]+" >> README.md
+	echo "" >> README.md
+clean:
+	rm README.md
