@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
+# File: guessinggame.sh
 
-guess_files() {
-    local file_count=$(ls -1 | wc -l) 
-    local guess=-1
-
-    echo "Guess how many files are in the current directory:"
-    while [[ $guess -ne $file_count ]]; do
-        read -p "Enter your guess: " guess
-        if [[ $guess -lt $file_count ]]; then
-            echo "Your guess is too low. Try again."
-        elif [[ $guess -gt $file_count ]]; then
-            echo "Your guess is too high. Try again."
+function guessinggame(){
+    no_of_files=$(pwd | ls | wc -l)
+    while true;
+    do
+        echo "pleas enter your guess"
+        read  number
+        if [ $number -lt $no_of_files ]
+        then
+            echo "Your guess is less than the number of files"
+        elif [ $number -gt $no_of_files ]
+        then
+            echo "Your guess is greater than the number of files"
         else
-            echo "Congratulations! You guessed correctly."
+            echo "Congratulation,your guess is correct!"
+        break;
         fi
     done
 }
 
-guess_files
+echo "Guess how many files are there in current directory?"
+guessinggame
